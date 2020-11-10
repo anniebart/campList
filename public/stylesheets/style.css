@@ -2,7 +2,7 @@
 body {
     font-family: Open Sans;
     font-size: 20px;
-    background-color: #F9F8F1;
+    background-color: #FFFCF2;
     width: 100vw;
     height: 100%;
     margin: 0;
@@ -10,12 +10,18 @@ body {
 }
 main {
     margin: 0 10%;
+    
 }
 
 h1 {
     font-family: Cabin;
-    color: #43291F;
+    color: #252422;
     text-transform: uppercase;
+}
+
+h2 {
+    font-size: 32px;
+    margin: 0;
 }
 a {
     color: #226F54;
@@ -26,13 +32,13 @@ a:hover {
 }
 
 header {
-    padding: 24px;
+    padding: 1% 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #226F54;
+    background-color: #252422;
     position: sticky -webkit-sticky;
-    
+    margin-bottom: 1%;
 
 }
 nav a {
@@ -45,24 +51,106 @@ nav a {
 }
 
 nav a:hover {
-    color: #F3EFC1;
+    color: #DB6639;
     
 }
 
+
+
+input {
+    font-family: Open Sans;
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+    width: 40%;
+}
+
+.actions {
+    display: flex;
+   
+}
+
 button {
-    background-color: #226F54;
+    background-color: #CBC5BA;
     padding: 12px;
     font-size: 16px;
     font-family: Open Sans;
     font-weight: 700;
     text-transform: uppercase;
-    border:none;
-    border-radius: 30px;
-    color: #F9F8F1;
-    transition: 0.3s;
+    border: 5px solid #252422;
+    color: #252422;
+    transition: 0.4s;
+    margin: 8px;
 }
 button:hover {
-    background-color: #DA2C38;
+    background-color: #252422;
+    color: #FFFCF2;
     transform: scale(0.95);
 }
 
+.small-btn {
+    font-size: 12px;
+    padding: 8px;
+}
+
+.card-info {
+    padding: 12px;
+}
+
+.card {
+    width: 80%;
+    display: flex;
+    border: solid 10px #252422;
+    margin-top: 1%;
+}
+.card-title {
+    background-color: #DB6639;
+    padding: 12px;
+    border-bottom: 10px solid #252422;
+    
+}
+
+.alert {
+    background-color: #C2E1CB;
+    padding: 12px;
+    
+}
+.card a{
+    text-decoration: none;
+    
+}
+.card img {
+   max-height: 400px;
+    max-width: 400px;
+    object-fit: cover;
+    border-right: 10px solid #252422;
+
+}
+.card-text{
+    width: 100%;
+}
+
+
+.delete-btn:hover {
+background-color: #DB6639;
+}
+
+.title {
+    margin-bottom: 2%;
+}
+.show-image {
+max-width: 620px;
+object-fit: cover;
+max-height: 420px;
+}
+
+@media (max-width: 800px){
+    .card {
+        display: block;
+    }
+
+    .card img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+}

@@ -1,18 +1,42 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<% layout('layouts/boilerplate')%>
+
+<% layout ('layouts/boilerplate')%>
        <h1><%= campground.title %></h1>
-       <h1><%= campground.location %></h1>
+       <h2><%= campground.location %></h2>
+       <img class="show-image" src="<%= campground.image%>">
+       <p> <%= campground.description%></p>
+       <p>Price: $<%= campground.price%> per night</p>
+       <div class="actions">
         <a href="/campgrounds/<%=campground._id%>/edit"><button>Edit</button></a>
         <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-            <button>Delete</button>
+            <button class="delete-btn">Delete</button></div>
         </form>
+
+        <form action='/campgrounds/<%=campground._id%>/reviews' method='POST'>
+            <h2>Leave a review</h2>
+            <div>
+            <label for='rating'>Rating</label>
+            <input name='review[rating]' id='rating' type='range' min='1' max='5'>
+        </div>
+            <div>
+            <label for="body">Review</label>
+            <textarea id='body' name='review[body]' required></textarea>
+        </div>
+            <button type='submit'>submit</button>
+        </form>
+       
+   <% for (let review of campground.reviews){ %>
+            <div class="card review">
+            <div class="card-info">
+                <p>Rating: <%= review.rating %></p>
+                <p>Review: <%= review.body %></p>
+                <form action='/campgrounds/<%= campground._id%>/reviews/<%= review._id %>?_method=DELETE' method='POST'><button class="delete-btn small-btn">Delete</button></form>
+            </div>
+            
+            </div>
+      <% } %> 
        <footer>
-        <a href="/campgrounds">all campgrounds</a>
-    </footer>
-        
-        <script src="" async defer></script>
-   
+        <a href="/campgrounds"><button>all campgrounds</button></a>
+       </footer>
+
+
+
