@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate')%>
+<div class='card'>
+<div class='card-text card-info'>
+
+<form action="/register" method="POST">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name='username' id='username' required>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name='email' id='email' required>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name='password' id='password' required>
+    </div>
+
+    <button>register</button>
+</form>
+</div></div>

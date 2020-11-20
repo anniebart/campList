@@ -12,10 +12,15 @@ const session = require('express-session')
 const flash = require('connect-flash')
 
 const { urlencoded } = require('express');
-const { allowedNodeEnvironmentFlags } = require('process');
+const { allowedNodeEnvironmentFlags, getMaxListeners } = require('process');
 const {campgroundSchema, reviewSchema} = require('./schemas.js');
-const campgrounds = require('./routes/campgrounds');
-const reviews = require('./routes/reviews')
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
+const userRoutes = require('./routes/users')
+const passport = require('passport')
+const LocalStrategy = require('passport-local');
+const User = require('./models/user')
+
 
 
 mongoose.connect('mongodb://localhost:27017/camplist', {
@@ -53,6 +58,16 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(flash())
 
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+
+// how to add a user to a session, added through passport
+passport.serializeUser(User.serializeUser())
+//how to remove a user from a seesion, also added through passport
+passport.deserializeUser(User.deserializeUser())
+
+
 app.use((req, res, next) =>{
 res.locals.success = req.flash('success')
 next();
@@ -78,15 +93,15 @@ const validateReview = (req, res, next) =>{
     }
 }
 
-app.use('/campgrounds', campgrounds);
-app.use('/campgrounds/:id/reviews', reviews);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/reviews', reviewRoutes);
+app.use('/', userRoutes)
 
 
 
 app.get('/', (req, res)=>{
     res.render('home')
 })
-
 
 
 
